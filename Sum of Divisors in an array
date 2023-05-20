@@ -1,0 +1,19 @@
+class Solution {
+  public:
+    vector<int> sumOfProperDivisors(int a[], int N) {
+        // code here
+        const int M=101;
+        vector<int> sum(M,0);
+        vector<int> res;
+        sum[1]=0;
+        for(int i=2;i<M;i++){
+            for(int j=i;j<M;j+=i){
+                sum[j]+=i;
+            }
+        }
+        for(int i=0;i<N;i++){
+            res.push_back(sum[a[i]]-a[i]+1);
+        }
+        return res;
+    }
+};
