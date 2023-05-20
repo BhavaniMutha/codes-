@@ -1,0 +1,42 @@
+class Solution {
+  public:
+  int bitcount(int x){
+        int c=0;
+        while(x){
+            x&=(x-1);
+            c++;
+        }
+        return c;
+    }
+        
+    int primeSetBits(int L, int R){
+        // code here
+        int c=0;
+        vector<int> ans;
+        vector<bool> isprime(R+1,1);
+        isprime[0]=0;
+        isprime[1]=0;
+        for(int i=2;i<=R;i++){
+            if(isprime[i]){
+                for(int j=i*i;j<=R;j+=i){
+                    isprime[j]=0;
+                }
+                
+            }
+        }
+        //return ans;
+        for(int i=L;i<=R;i++){
+            if(isprime[bitcount(i)]==1){
+                c++;
+                
+            }
+        }
+        return c;
+       
+    }
+    
+    
+    
+};
+
+
