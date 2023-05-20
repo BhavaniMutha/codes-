@@ -1,0 +1,27 @@
+#define  n 1e3+1 
+class Solution {
+  public:
+    vector<int> primeTwins(int L, int R) {
+        // code here
+        vector<int> ans;
+        vector<int> isprime(n+1,1);
+        isprime[0]=0;
+        isprime[1]=0;
+        for(int i=2;i*i<=R+1;i++){
+            if(isprime[i]){
+                for(int j=i*i;j<=R+1;j+=i){
+                    isprime[j]=0;
+                }
+            }
+        }
+        for(int i=L;i<=R-2;i++){
+            if(isprime[i]){
+                if(isprime[i+2]){
+                    return {i,i+2};
+                }
+            }
+        }
+        return {-1};
+    }
+    
+};
