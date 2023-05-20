@@ -1,0 +1,31 @@
+void sieve(){
+    isprime[0]=0;
+    isprime[1]=0;
+    for(int i=2;i*i<=100001;i++){
+        if(isprime[i]){
+            for(int j=i*i;j<=100001;j+=i)
+            if(isprime[j])
+            isprime[j]=0;
+        }
+    }
+    
+}
+long long minNumber(long long arr[],long long N)
+{
+    sieve();
+    long long sum=0;
+    for(long long i=0;i<N;i++){
+        sum+=arr[i];
+    }
+    if(isprime[sum])
+    return 0;
+    long long ans;
+    for(long long i=sum+1;i<=100001;i++)
+    //cout<<ans<<" ";
+    if(isprime[i]){
+        ans=i-sum;
+        //cout<<ans<<" ";
+        break;
+    }
+    return ans;
+}
