@@ -1,0 +1,30 @@
+//Modified Numbers and Queries
+
+class Solution {
+  public:
+    int sumOfAll(int l, int r){
+        int sieve[10001];
+        bool ppp[10001];
+        memset(sieve,0,sizeof sieve);
+        memset(ppp,true,sizeof ppp);
+        ppp[1]=0;
+        for(int i=2;i<10001;i++)
+        {
+            if(ppp[i])
+            {
+                sieve[i]=i;
+                for(int j=2*i;j<10001;j+=i)
+                {
+                    ppp[j]=false;
+                    sieve[j]=sieve[j]+i;
+                }
+            }
+        }
+        int sum=0;
+        for(int i=l;i<=r;i++)
+        {
+            sum+=sieve[i];
+        }
+        return sum;
+    }
+};
